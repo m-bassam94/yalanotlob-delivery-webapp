@@ -1,24 +1,26 @@
-# README
+# Yalanotlob
+![Open Source Love svg2](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/atefhares/CrowdFunding-Web-App/blob/master/LICENSE)
+![](https://img.shields.io/badge/Rails-6-brightgreen)
+![](https://img.shields.io/badge/Ruby-2.7-red)
+![GitHub contributors](https://img.shields.io/github/contributors/m-bassam94/yalanotlob-delivery-webapp)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A simple web application for ordering food with your friends using RubyOnRails
 
-Things you may want to cover:
 
-* Ruby version
+# Dependencies
+- Ruby 2.7 or higher
+- Rails 6.0 or higher
+- MySql server preconfigured with configurations from `database.yml`
 
-* System dependencies
+# Getting started
+- make sure of having the required dependencies
+- clone the repo
+- run `bundle install `
+- configure database in mysql server according to configurations from `database.yml`
+- run `rails db:migrations`
+- start the server `rails server`
 
-* Configuration
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+##
+_This project is created by students of [ITI](http://iti.gov.eg/) - intake@40_
