@@ -21,6 +21,17 @@ A simple web application for ordering food with your friends using RubyOnRails
 - run `rails db:migrations`
 - start the server `rails server`
 
+## Database ERD
+
+<details><summary>CLICK ME</summary>
+<p>
+
+#### 
+
+![](/readme_images/db-erd.png)
+
+</p>
+</details>
 
 ##
 _This project is created by students of [ITI](http://iti.gov.eg/) - intake@40_
