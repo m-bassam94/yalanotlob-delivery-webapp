@@ -30,8 +30,24 @@ body {
     position: relative;
     text-align: center;
 }
+.signup-form h4 {
+    color: #636363;
+    margin: 0 0 15px;
+    position: relative;
+    text-align: center;
+    font-size: 0.9rem;
+}
 
 .signup-form h2:before, .signup-form h2:after {
+    content: "";
+    height: 2px;
+    width: 30%;
+    background: #d4d4d4;
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+}
+.signup-form h4:before, .signup-form h4:after {
     content: "";
     height: 2px;
     width: 30%;
@@ -46,6 +62,13 @@ body {
 }
 
 .signup-form h2:after {
+    right: 0;
+}
+.signup-form h4:before {
+    left: 0;
+}
+
+.signup-form h4:after {
     right: 0;
 }
 
