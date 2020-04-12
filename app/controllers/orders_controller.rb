@@ -24,8 +24,12 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    @order = Order.new(order_params)
-
+    p "TEST1"
+    @order = Order.new
+    p "TEST2"
+    @order.type = order_params[:type]
+    @order.restaurant = order_params[:restaurant]
+    p @order
     respond_to do |format|
       if @order.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
@@ -62,13 +66,20 @@ class OrdersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_order
-      @order = Order.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def order_params
-      params.fetch(:order, {})
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_order
+    @order = Order.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def order_params
+    params.fetch(:order, {})
+  end
+end
+
+private
+
+def post_params
+  params.permit(:type, :restaurant)
 end
