@@ -1,5 +1,10 @@
 class MealsController < ApplicationController
-    def order_details
+    
+    def details
         
+    end
+    
+    def addMeals
+
     end
 end

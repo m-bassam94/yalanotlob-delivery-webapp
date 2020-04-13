@@ -4,5 +4,6 @@ Rails.application.routes.draw do
 
   root to: "home#index"
 
-  get 'details' => 'meals#details'
+  get 'details/:id' => 'meals#details'
+  post 'details/new' => 'meals#addMeals', as: 'addMeal'
 end
