@@ -9,20 +9,15 @@
             <th>Comment</th>
         </tr>
     </thead>
+    <% @meals.each do |meal| %>
     <tr>
-        <td>mohamed</td>
-        <td>ta3mia</td>
-        <td>2</td>
-        <td>10</td>
-        <td>sokhna</td>
+        <td><%= meal.person%></td>
+        <td><%= meal.meal%></td>
+        <td><%= meal.amount%></td>
+        <td><%= meal.price%></td>
+        <td><%= meal.comment%></td>
     </tr>
-    <tr>
-        <td>tharwat</td>
-        <td>ta3mia</td>
-        <td>3</td>
-        <td>15</td>
-        <td></td>
-    </tr>
+    <% end %>
 </table>
 <br>
 
