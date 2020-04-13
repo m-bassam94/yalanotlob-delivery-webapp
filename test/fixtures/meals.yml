@@ -6,7 +6,7 @@ one:
   amount: 1
   price: 1
   comment: MyText
-  order_id: 1
+  order: 1
 
 two:
   person: MyString
@@ -14,4 +14,4 @@ two:
   amount: 1
   price: 1
   comment: MyText
-  order_id: 1
+  order: 1

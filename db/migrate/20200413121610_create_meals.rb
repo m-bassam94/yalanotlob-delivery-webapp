@@ -6,7 +6,7 @@ class CreateMeals < ActiveRecord::Migration[6.0]
       t.integer :amount
       t.integer :price
       t.text :comment
-      t.integer :order_id
+      t.integer :order
 
       t.timestamps
     end

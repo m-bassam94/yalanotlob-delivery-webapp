@@ -26,7 +26,9 @@
 </table>
 <br>
 
-<%= form_for :meal, :html => {:class => 'form-inline'} do |f| %>
+<%= form_for :addMeal, url: addMeal_url, :html => {:class => 'form-inline'} do |f| %>
+
+  <%= f.text_field(:person, {:value => current_user.first_name, :style => 'display: none;'}) %>
 
   <div class="form-group mx-sm-3 mb-2">
     <%= f.label(:meal, {:class => 'sr-only'})%>
@@ -48,7 +50,7 @@
     <%= f.text_field(:comment, {:class => 'form-control', :placeholder => 'Comment'}) %> 
   </div> 
 
-  <%# <%= f.submit({:class => 'btn btn-primary'}) %> 
+<%= f.number_field(:order, {:style => 'display: none;'}) %>  
   <%= f.button 'Add',  class: 'btn btn-primary mb-2', type: 'submit' %>
 
 <% end %>

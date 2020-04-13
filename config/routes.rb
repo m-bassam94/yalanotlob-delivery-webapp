@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   root to: "home#index"
 
   get 'details/:id' => 'meals#details'
-  post 'details/new' => 'meals#addMeals', as: 'addMeal'
+  post 'details/:id' => 'meals#addMeal', as: 'addMeal'
 end
