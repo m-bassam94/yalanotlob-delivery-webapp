@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   root to: "home#index"
   resource :friends
+  resource :users
   get 'details/:id' => 'meals#details'
   post 'details/:id' => 'meals#addMeal', as: 'addMeal'
 end

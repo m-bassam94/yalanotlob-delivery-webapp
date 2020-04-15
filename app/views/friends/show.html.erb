@@ -4,47 +4,36 @@
 <div class="mt-5 ml-5">
   <h3 class="">Friends</h3>
 </div>
-<div class="input-group ml-5 mr-4 mt-2 mb-2 col-6">
-  <label for="friend-email" class="p-2">Your friend's email:</label>
-  <input type="text" class="form-control mr-2" id="friend-email" placeholder="Recipient's username">
-  <button href="#" class="btn btn-primary">Add</button>
-</div>
+<%= form_with method: "post" do %>
+  <div class="input-group ml-5 mr-4 mt-2 mb-2 col-10 col-md-6">
+    <%= label "email-invite", "post", "Your friend's email:", class: "p-2" %>
+
+    <%= text_field_tag "email-invite", nil, placeholder: "Recipient's email", class: "form-control mr-2  " %>
+
+    <%= submit_tag "Add", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
 <div class="row border p-3 mb-5 ml-5 mr-5 align-middle">
-  <div class="col-12 col-sm-6 col-md-4 col-xl-3">
-    <div class="card w-100 p-3 border-0">
-      <div class="card-body">
-        <h5 class="card-title">Ahmed Raafat</h5>
-        <!--        <p class="card-text"></p>-->
-        <a href="#" class="btn btn-danger">Unfriend</a>
+  <% unless @friends.nil? %>
+    <% @friends.each do |friend| %>
+      <div class="col-12 col-sm-6 col-md-4">
+        <div class="card w-100 p-3 border-0">
+          <div class="card-body">
+            <h5 class="card-title">
+              <%= "#{friend.first_name}  #{friend.last_name}" %>
+            </h5>
+            <p><%= friend.email %></p>
+            <!--        <p class="card-text"></p>-->
+<!--            <a href="#" class="btn btn-danger">Unfriend</a>-->
+            <%= button_tag "Unfriend",class: "btn btn-danger" %>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-  <div class="col-12 col-sm-6 col-md-4 col-xl-3">
-    <div class="card w-100 p-3 border-0">
-      <div class="card-body">
-        <h5 class="card-title">Ahmed Raafat</h5>
-        <!--        <p class="card-text"></p>-->
-        <a href="#" class="btn btn-danger">Unfriend</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-12 col-sm-6 col-md-4 col-xl-3">
-    <div class="card w-100 p-3 border-0">
-      <div class="card-body">
-        <h5 class="card-title">Ahmed Raafat</h5>
-        <!--        <p class="card-text"></p>-->
-        <a href="#" class="btn btn-danger">Unfriend</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-12 col-sm-6 col-md-4 col-xl-3">
-    <div class="card w-100 p-3 border-0">
-      <div class="card-body">
-        <h5 class="card-title">Ahmed Raafat</h5>
-        <!--        <p class="card-text"></p>-->
-        <a href="#" class="btn btn-danger">Unfriend</a>
-      </div>
-    </div>
-  </div>
+    <% end %>
+  <% else %>
+    <h4 class="text-center col-12">You have no friends yet.</h4>
+  <% end %>
+
 
 </div>
