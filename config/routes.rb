@@ -5,11 +5,6 @@ Rails.application.routes.draw do
 
   root to: "home#index"
 
-
-  get 'details' => 'meals#details'
-  
-
-
   get '/orders/new' => 'orders#new'
   post '/orders' => 'orders#create', as: 'newOrder'
 
