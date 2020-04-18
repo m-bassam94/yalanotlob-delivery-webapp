@@ -34,7 +34,7 @@ class FriendsController < ApplicationController
     else
       # TODO show error messages
       p "NOT A VALID EMAIL FOR USER"
-      @errors.push("error":"Email entered doesn't match a valid user's email.")
+      @errors.push("error": "Email entered doesn't match a valid user's email.")
       p @errors
     end
 
@@ -47,12 +47,18 @@ class FriendsController < ApplicationController
 
   end
 
+
   def show
-    @friends_arr = []
-    current_user.friendships.each do |friendship|
-      @friends = @friends_arr.push(User.find(id = friendship.friend_id))
+    unless user_signed_in?
+      authenticate_user!
+    else
+      @friends_arr = []
+      current_user.friendships.each do |friendship|
+        @friends = @friends_arr.push(User.find(id = friendship.friend_id))
+      end
+      p @friends
     end
-    p @friends
+
   end
 
   def destroy
