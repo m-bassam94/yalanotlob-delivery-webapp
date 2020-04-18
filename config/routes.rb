@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users 
+    resources :groups
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   root to: "home#index"
+
+
+  get 'details' => 'meals#details'
+  
+
 
   get '/orders/new' => 'orders#new'
   post '/orders' => 'orders#create', as: 'newOrder'
@@ -10,4 +16,5 @@ Rails.application.routes.draw do
   #after submitting new order, redirect to its details page
   get '/orders/details/:id' => 'meals#details', as: 'details'
   post '/orders/details/:id' => 'meals#addMeal', as: 'addMeal'
+
 end
