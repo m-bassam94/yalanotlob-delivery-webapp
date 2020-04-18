@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
-  # before_action :authenticate_user!
+
 
   protected
 
@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
     if user_signed_in?
       redirect_to root_path
     else
-      redirect_to new_user_session_path, :notice => 'You are not logged in!'
+      redirect_to new_user_session_path
       ## if you want render 404 page
       ## render :file => File.join(Rails.root, 'public/404'), :formats => [:html], :status => 404, :layout => false
     end

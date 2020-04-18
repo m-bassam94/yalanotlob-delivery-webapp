@@ -5,7 +5,16 @@ Rails.application.routes.draw do
 
   root to: "home#index"
 
+
   get 'details' => 'meals#details'
   
+
+
+  get '/orders/new' => 'orders#new'
+  post '/orders' => 'orders#create', as: 'newOrder'
+
+  #after submitting new order, redirect to its details page
+  get '/orders/details/:id' => 'meals#details', as: 'details'
+  post '/orders/details/:id' => 'meals#addMeal', as: 'addMeal'
 
 end
