@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   #after submitting new order, redirect to its details page
   get '/orders/details/:id' => 'meals#details', as: 'details'
   post '/orders/details/:id' => 'meals#addMeal', as: 'addMeal'
+  resource :friends
+  resource :users
 end
