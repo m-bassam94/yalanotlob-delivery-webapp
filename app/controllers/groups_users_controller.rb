@@ -6,7 +6,8 @@ class GroupsUsersController < ApplicationController
         elsif @user.id == current_user.id
             flash[:group_member_errors] = ["You can't add yourself to the group"]
         else
-            @group_member = GroupsUser.find_by(user_id: @user.id, group_id: params[:group_id])
+            @group = Group.find_by(id: params[:id], creator: current_user.id)
+            @group_member = @group.users(user_id: @user.id, group_id: params[:group_id])
             if @group_member.nil?
                 @friend = Friend.find_by(user_id: current_user.id, friend_id: @user.id)
                 unless @friend.nil?
@@ -23,5 +24,17 @@ class GroupsUsersController < ApplicationController
         end
         redirect_to group_url(:id => params[:group_id])
     end
-    render :template => 'groups/show'
+    # render :template => 'groups/show'
+    def destroy
+        @group = Group.find_by(id: params[:group_id], creator: current_user.id)
+        @group_member = @group.users.find params[:user_id]
+        @group.users.delete @group_member
+          redirect_back(fallback_location: root_path)
+      end
+    
+    
 end
+
+
+
+    

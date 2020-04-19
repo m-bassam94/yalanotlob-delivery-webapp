@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2020_04_16_182451) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.integer "type"
     t.string "resturant"
     t.string "menu_image"
