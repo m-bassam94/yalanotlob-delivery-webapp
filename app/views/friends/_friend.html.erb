@@ -1,4 +1,4 @@
-<%= form_with method: "post", remote: true do |f| %>
+<%= form_with model: @friendships, method: "post" do |f| %>
   <% flash.each do |type, msg| %>
     <div class="alert alert-<%= type %> ">
       <%= msg %>

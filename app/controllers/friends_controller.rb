@@ -18,7 +18,6 @@ class FriendsController < ApplicationController
     @new_friend = User.where(:email => @email).first
     if @new_friend.present? and Friendship.where(friend_id: @new_friend.id).present?
       flash[:danger] = "#{@new_friend.first_name} is already in your friend list."
-      p @new_friend.first_name
     elsif @new_friend.present? and not Friendship.where(friend_id: @new_friend.id).present?
       @friend = User.where(:email => @email).first
       @new_friendship = Friendship.new
@@ -26,8 +25,7 @@ class FriendsController < ApplicationController
       @new_friendship.user_id = current_user.id
 
       if @new_friendship.save
-        # TODO show new friends async
-        p "SAAAAVEEEEED"
+        # TODO ajax show new friends
         render 'show'
       else
         render 'new'
@@ -36,18 +34,18 @@ class FriendsController < ApplicationController
       redirect_to friends_path
     else
       # TODO show error messages
-      p "NOT A VALID EMAIL FOR USER"
-      @errors.push("error": "Email entered doesn't match a valid user's email.")
-      p @errors
       flash[:danger] = "Email entered doesn't match a valid user's email."
     end
 
     @deleted_friendship = current_user.friendships.where(:friend_id => @delete_id)
     if @deleted_friendship.present?
-      # TODO show async deletion
+      # TODO ajax deletion
       @deleted_friendship.delete_all
     end
 
+    respond_to do |format|
+      show.html.erb
+    end
   end
 
 
@@ -60,13 +58,12 @@ class FriendsController < ApplicationController
       current_user.friendships.each do |friendship|
         @friends = @friends_arr.push(User.find(id = friendship.friend_id))
       end
-      #p @friends
     end
 
   end
 
   def destroy
-    p "ENTERED DESTROY"
+    #p "ENTERED DESTROY"
   end
 
 end
