@@ -12,8 +12,6 @@ class GroupsController < ApplicationController
             redirect_to :groups
         else
         @group_members =  @group.users.all
-        # p @group_members
-        # p @group
          end
     end
    

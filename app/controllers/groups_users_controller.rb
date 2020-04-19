@@ -25,6 +25,8 @@ class GroupsUsersController < ApplicationController
         redirect_to group_url(:id => params[:group_id])
     end
     # render :template => 'groups/show'
+
+    
     def destroy
         @group = Group.find_by(id: params[:group_id], creator: current_user.id)
         @group_member = @group.users.find params[:user_id]
