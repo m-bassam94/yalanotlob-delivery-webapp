@@ -4,4 +4,7 @@ class HomeController < ApplicationController
   def index
   end
 
+  @group = Group.new
+  @group.users.all
+
 end
