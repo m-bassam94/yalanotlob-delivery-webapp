@@ -1,9 +1,10 @@
-<%= form_with method: "post" do |f| %>
-  <% unless @errors.nil? %>
-    <%= @errors.each do |msg| %>
-      <div class="alert alert-danger"><%= msg %></div>
-    <% end %>
+<%= form_with method: "post", remote: true do |f| %>
+  <% flash.each do |type, msg| %>
+    <div class="alert alert-<%= type %> ">
+      <%= msg %>
+    </div>
   <% end %>
+
   <div class="input-group ml-5 mr-4 mt-2 mb-2 col-10 col-md-6">
     <%= label "email-invite", "post", "Your friend's email:", class: "p-2" %>
 

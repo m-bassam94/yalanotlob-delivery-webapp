@@ -16,7 +16,10 @@ class FriendsController < ApplicationController
 
 
     @new_friend = User.where(:email => @email).first
-    if @new_friend.present? and not Friendship.where(friend_id: @new_friend.id).present?
+    if @new_friend.present? and Friendship.where(friend_id: @new_friend.id).present?
+      flash[:danger] = "#{@new_friend.first_name} is already in your friend list."
+      p @new_friend.first_name
+    elsif @new_friend.present? and not Friendship.where(friend_id: @new_friend.id).present?
       @friend = User.where(:email => @email).first
       @new_friendship = Friendship.new
       @new_friendship.friend_id = @friend.id
@@ -36,6 +39,7 @@ class FriendsController < ApplicationController
       p "NOT A VALID EMAIL FOR USER"
       @errors.push("error": "Email entered doesn't match a valid user's email.")
       p @errors
+      flash[:danger] = "Email entered doesn't match a valid user's email."
     end
 
     @deleted_friendship = current_user.friendships.where(:friend_id => @delete_id)
@@ -44,19 +48,19 @@ class FriendsController < ApplicationController
       @deleted_friendship.delete_all
     end
 
-
   end
 
 
   def show
     unless user_signed_in?
+      flash[:alert] = "You're not signed in."
       authenticate_user!
     else
       @friends_arr = []
       current_user.friendships.each do |friendship|
         @friends = @friends_arr.push(User.find(id = friendship.friend_id))
       end
-      p @friends
+      #p @friends
     end
 
   end
