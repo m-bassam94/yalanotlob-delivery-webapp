@@ -1,10 +1,5 @@
 class GroupsController < ApplicationController
 
-  def index
-    @id = current_user.id
-    @groups = Group.where(creator: @id).all
-  end
-
   def show
     @groups = Group.where(creator: current_user.id)
     @group = Group.find_by(id: params[:id], creator: current_user.id)
@@ -13,8 +8,6 @@ class GroupsController < ApplicationController
       redirect_to :groups
     else
       @group_members = @group.users.all
-      # p @group_members
-      # p @group
     end
   end
 
