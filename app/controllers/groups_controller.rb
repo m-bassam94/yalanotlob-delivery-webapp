@@ -1,5 +1,4 @@
 class GroupsController < ApplicationController
-  before_action :authenticate_user!
 
   def index
     @id = current_user.id
@@ -12,15 +11,10 @@ class GroupsController < ApplicationController
     if @group.nil?
       flash[:group_error] = "No Group exists with this id"
       redirect_to :groups
-      # else
-      #     @members = GroupMember.where(group_id: params[:id])
-      #     @users = @members.map{
-      #         |member| User.find(member.user_id)
-      #     }
-      #     # @data = []
-      #     # @data << @group
-      #     # @data << @groups
-      #     # @data << @users
+    else
+      @group_members = @group.users.all
+      # p @group_members
+      # p @group
     end
   end
 
