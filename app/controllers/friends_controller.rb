@@ -26,9 +26,6 @@ class FriendsController < ApplicationController
       if @new_friendship.save
         p "SAVEEEED"
         @new_notification = Notification.create recipient_id: @friend.id, actor_id: current_user.id, action: "added you as a friend", notifiable: @new_friendship
-        #@new_notification.notifiable = @friendships
-        p @new_notification
-
         # TODO ajax show new friends
         # TEMP TODO refresh page
       else
