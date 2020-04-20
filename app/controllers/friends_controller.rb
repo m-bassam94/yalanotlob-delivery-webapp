@@ -2,7 +2,10 @@ class FriendsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-
+    @friends_arr = []
+    current_user.friendships.each do |friendship|
+      @friends = @friends_arr.push(User.find(id = friendship.friend_id))
+    end
   end
 
   def new
@@ -51,10 +54,7 @@ class FriendsController < ApplicationController
 
 
   def show
-    @friends_arr = []
-    current_user.friendships.each do |friendship|
-      @friends = @friends_arr.push(User.find(id = friendship.friend_id))
-    end
+
   end
 
   def destroy
