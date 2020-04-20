@@ -12,6 +12,23 @@
     <div class="col-12 col-md-5 col-lg-5 mt-5">
       <div class="border-right border-left border-bottom border-dark px-4 bg-white">
         <h4 class="mb-3 col-black">My Groups</h4>
+        <!-- Show error msgs -->
+    <% if flash[:group_errors]%>
+        <div class="alert alert-danger">
+            <% flash[:group_errors].each do |msg|%>
+            <li>
+                <%= msg %>
+            </li>
+            <% end %>
+        </div>
+    <% end %>
+    <% if flash[:group_error]%>
+        <div class="alert alert-danger">
+            <li>
+                <%= flash[:group_error] %>
+            </li>
+        </div>
+    <% end %>
         <% unless @groups.nil? %>
           <table class="table">
             <tbody>

@@ -1,4 +1,5 @@
 class GroupsUsersController < ApplicationController
+  add_flash_types :success, :warning, :danger, :info
   def create
     @user = User.find_by(email: params[:email])
     if @user.nil?
