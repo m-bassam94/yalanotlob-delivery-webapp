@@ -6,10 +6,10 @@ class GroupsUsersController < ApplicationController
     elsif @user.id == current_user.id
       flash[:group_member_errors] = ["You can't add yourself to the group"]
     else
-      @group = Group.find_by(id: params[:id], creator: current_user.id)
-      @group_member = @group.users(user_id: @user.id, group_id: params[:group_id])
+      @group = Group.find_by(id: params[:group_id], creator: current_user.id)
+      @group_member = @group.users.find_by(id: @user.id)
       if @group_member.nil?
-        if Friendship.where(friend_id: @new_friend.id).present?
+        if Friendship.where(friend_id: @user.id).present?
           @group.users << @user
         else
           flash[:group_member_errors] = ["User isn't a friend"]
