@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :groups
   resources :groups_users
   resources :orders
+  resources :friends
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   root to: "home#index"
