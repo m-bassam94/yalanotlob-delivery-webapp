@@ -9,12 +9,8 @@ class GroupsUsersController < ApplicationController
       @group = Group.find_by(id: params[:id], creator: current_user.id)
       @group_member = @group.users(user_id: @user.id, group_id: params[:group_id])
       if @group_member.nil?
-        @friend = Friend.find_by(user_id: current_user.id, friend_id: @user.id)
-        unless @friend.nil?
-          @group_member = GroupsUser.create(user_id: @user.id, group_id: params[:group_id])
-          unless @group_member.persisted?
-            flash[:group_member_errors] = @group_member.errors.full_messages
-          end
+        if Friendship.where(friend_id: @new_friend.id).present?
+          @group.users << @user
         else
           flash[:group_member_errors] = ["User isn't a friend"]
         end

@@ -1,4 +1,6 @@
 class FriendsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
 
   end
@@ -49,16 +51,10 @@ class FriendsController < ApplicationController
 
 
   def show
-    unless user_signed_in?
-      flash[:alert] = "You're not signed in."
-      authenticate_user!
-    else
-      @friends_arr = []
-      current_user.friendships.each do |friendship|
-        @friends = @friends_arr.push(User.find(id = friendship.friend_id))
-      end
+    @friends_arr = []
+    current_user.friendships.each do |friendship|
+      @friends = @friends_arr.push(User.find(id = friendship.friend_id))
     end
-
   end
 
   def destroy
