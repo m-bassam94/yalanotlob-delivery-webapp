@@ -5,6 +5,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :friendships
+  has_many :notifications, foreign_key: :recipient_id
+  has_many :notifications, foreign_key: :actor_id
 
   has_one_attached :avatar
 end

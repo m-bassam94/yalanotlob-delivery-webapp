@@ -15,4 +15,10 @@ Rails.application.routes.draw do
   post '/orders/details/:id' => 'meals#addMeal', as: 'addMeal'
   resource :friends
 
+  resources :notifications do
+    collection do
+      post :mark_as_read
+    end
+  end
+
 end
