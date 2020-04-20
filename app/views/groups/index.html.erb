@@ -1,38 +1,41 @@
 <div class="container mt-5">
-    <div class="row">
-        <div class="col-12">
-            <%= form_tag  groups_path do |form| %>
-            <div class="active-purple-4 mb-4 d-flex">
-                <%= text_field_tag(:name, nil, placeholder: "Group...", class: "form-control mx-2") %>
-                <%= submit_tag "Create", class: "btn btn-info" %>
-            </div>
-
-            <% end %>
-        </div>
-        <div class="col-12 col-md-5 col-lg-5 mt-5">
-            <div class="border-right border-left border-bottom border-dark px-4">
-                <h4 class="mb-3 col-black">My Groups</h4>
-                <table class="table">
-                    <tbody>
-                        <% @groups.each do |group| %>
-                        <tr>
-                            <td><%= group.name %></td>
-                            <td><%= link_to 'Edit Group', group_path(group) %></td>
-                            <td><%= link_to 'Delete Group', group_path(group), method: :delete, 
-                                            data: { confirm: 'Are you sure?' }%></td>
-                        </tr>
-                        <% end %>
-                    </tbody>
-                </table>
-            </div>
+  <div class="row">
+    <div class="col-12">
+      <%= form_tag groups_path do |form| %>
+        <div class="active-purple-4 mb-4 d-flex">
+          <%= text_field_tag(:name, nil, placeholder: "Group...", class: "form-control mx-2") %>
+          <%= submit_tag "Create", class: "btn btn-info" %>
         </div>
 
-        <div class="col-12 col-md-7 col-lg-7 mt-5">
-            <div class="border-right border-left border-bottom border-dark px-4">
-                <h4 class="mb-3 col-black">Group Edit</h4>
-
-            </div>
-        </div>
-
+      <% end %>
     </div>
+    <div class="col-12 col-md-5 col-lg-5 mt-5">
+      <div class="border-right border-left border-bottom border-dark px-4">
+        <h4 class="mb-3 col-black">My Groups</h4>
+        <% unless @groups.nil? %>
+          <table class="table">
+            <tbody>
+            <% @groups.each do |group| %>
+              <tr>
+                <td><%= group.name %></td>
+                <td><%= link_to 'Edit Group', group_path(group) %></td>
+                <td><%= link_to 'Delete Group', group_path(group), method: :delete,
+                                data: {confirm: 'Are you sure?'} %></td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        <% end %>
+
+      </div>
+    </div>
+
+    <div class="col-12 col-md-7 col-lg-7 mt-5">
+      <div class="border-right border-left border-bottom border-dark px-4">
+        <h4 class="mb-3 col-black">Group Edit</h4>
+
+      </div>
+    </div>
+
+  </div>
 </div>

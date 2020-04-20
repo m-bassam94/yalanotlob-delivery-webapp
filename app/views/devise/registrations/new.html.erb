@@ -27,6 +27,13 @@
       <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "Confirm Password", required: true %>
     </div>
 
+    <br/>
+    <div class="form-group">
+      <%= f.label "Upload your new profile picture below!", class: "form-label" %>
+      <%= f.file_field :avatar %>
+    </div>
+    <br/>
+
     <div class="form-group">
       <label class="checkbox-inline"><input type="checkbox" required="required"> I accept the
         <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a></label>
