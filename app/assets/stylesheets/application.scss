@@ -15,4 +15,57 @@
  */
 
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
+@import "font-awesome";
 
+
+.dropdown-menu {
+  top: 60px;
+  right: 0px;
+  left: unset;
+  width: 460px;
+  box-shadow: 0px 5px 7px -1px #c1c1c1;
+  padding-bottom: 0px;
+  padding: 0px;
+}
+
+.dropdown-menu:before {
+  content: "";
+  position: absolute;
+  top: -20px;
+  right: 12px;
+  border: 10px solid #343A40;
+  border-color: transparent transparent #343A40 transparent;
+}
+
+.head {
+  padding: 5px 15px;
+  border-radius: 3px 3px 0px 0px;
+}
+
+.fa-stack[data-count]:after{
+  position:absolute;
+  right:2%;
+  top:1%;
+  content: attr(data-count);
+  font-size:60%;
+  padding:.6em;
+  border-radius:999px;
+  line-height:.75em;
+  color: white;
+  background:rgba(255,0,0,.85);
+  text-align:center;
+  min-width:2em;
+  font-weight:bold;
+}
+
+.notification-box {
+  padding: 10px 0px;
+}
+
+@media (max-width: 640px) {
+  .dropdown-menu {
+    top: 50px;
+    left: -16px;
+    width: 290px;
+  }
+}
