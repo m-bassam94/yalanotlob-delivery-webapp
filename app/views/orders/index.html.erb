@@ -4,14 +4,13 @@
       <h1 class="display-4">Orders</h1>
     </div>
     <div class="col">
-       <button class="btn btn-link"><%= link_to "Start New Order", "/orders/new"%></button>
+      <button class="btn btn-link"><%= link_to "Start New Order", "/orders/new" %></button>
     </div>
   </div>
 
 
-
-<table class="table table-light">
-  <thead class="thead-light">
+  <table class="table table-light">
+    <thead class="thead-light">
     <tr>
       <th scope="col">#</th>
       <th scope="col">Order</th>
@@ -21,60 +20,36 @@
       <th scope="col">Status</th>
       <th scope="col" colspan="3">Actions</th>
     </tr>
-  </thead>
+    </thead>
 
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-      <td>16 Feb</td>
-      <td>Waiting</td>
-      <td>
-      <button class="btn btn-link"><%= link_to "View", "#" %></button>
-      </td>
-      <td>
-      <button class="btn btn-link"><%= link_to "Finish", "##" %></button>
-      </td>
-      <td>
-      <button class="btn btn-link"><%= link_to "Cancel", "###" %></button>
-      </td>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-      <td>16 Feb</td>
-      <td>Waiting</td>
-      <td>
-      <button class="btn btn-link"><%= link_to "View", "#" %></button>
-      </td>
-      <td>
-      <button class="btn btn-link"><%= link_to "Finish", "##" %></button>
-      </td>
-      <td>
-      <button class="btn btn-link"><%= link_to "Cancel", "###" %></button>
-      </td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-      <td>16 Feb</td>
-      <td>Waiting</td>
-      <td>
-      <button class="btn btn-link"><%= link_to "View", "#" %></button>
-      </td>
-      <td>
-      <button class="btn btn-link"><%= link_to "Finish", "##" %></button>
-      </td>
-      <td>
-      <button class="btn btn-link"><%= link_to "Cancel", "###" %></button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+    <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <th scope="row"><%= @counter + 1 %></th>
+        <td>
+          <%= if order.category == 1
+                @category = "Breakfast"
+              elsif order.category == 2
+                @category = "Lunch"
+              elsif order.category == 3
+                @category = "Dinner"
+              end %>
+        </td>
+        <td><%= order.resturant %></td>
+        <td>@mdo</td>
+        <td><%= order.created_at.strftime("%Y-%m-%d") %></td>
+        <td>Waiting</td>
+        <td>
+          <button class="btn btn-link"><%= link_to "View", "#" %></button>
+        </td>
+        <td>
+          <button class="btn btn-link"><%= link_to "Finish", "##" %></button>
+        </td>
+        <td>
+          <button class="btn btn-link"><%= link_to "Cancel", "###" %></button>
+        </td>
+    <% end %>
+    </tbody>
+  </table>
 
 </div>
