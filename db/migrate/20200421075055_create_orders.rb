@@ -1,12 +1,11 @@
 class CreateOrders < ActiveRecord::Migration[6.0]
   def change
     create_table :orders do |t|
-      t.integer :type
+      t.string :orderType
       t.string :resturant
-      t.string :menu_image
-      t.text :food
-      t.belongs_to :user
-      
+      t.binary :menu
+      t.references :user, null: false, foreign_key: true
+
       t.timestamps
     end
   end
