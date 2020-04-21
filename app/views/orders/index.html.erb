@@ -24,56 +24,24 @@
   </thead>
 
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-      <td>16 Feb</td>
-      <td>Waiting</td>
-      <td>
-      <button class="btn btn-link"><%= link_to "View", "#" %></button>
-      </td>
-      <td>
-      <button class="btn btn-link"><%= link_to "Finish", "##" %></button>
-      </td>
-      <td>
-      <button class="btn btn-link"><%= link_to "Cancel", "###" %></button>
-      </td>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-      <td>16 Feb</td>
-      <td>Waiting</td>
-      <td>
-      <button class="btn btn-link"><%= link_to "View", "#" %></button>
-      </td>
-      <td>
-      <button class="btn btn-link"><%= link_to "Finish", "##" %></button>
-      </td>
-      <td>
-      <button class="btn btn-link"><%= link_to "Cancel", "###" %></button>
-      </td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-      <td>16 Feb</td>
-      <td>Waiting</td>
-      <td>
-      <button class="btn btn-link"><%= link_to "View", "#" %></button>
-      </td>
-      <td>
-      <button class="btn btn-link"><%= link_to "Finish", "##" %></button>
-      </td>
-      <td>
-      <button class="btn btn-link"><%= link_to "Cancel", "###" %></button>
-      </td>
-    </tr>
+    <%  @orders.each do |order|%>
+      <tr>
+        <th scope="row"><%= @counter+1 %></th>
+        <td><%= current_user.first_name %> <%= current_user.last_name %></td>
+        <td><%= order.resturant %></td>
+        <td>@mdo</td>
+        <td><%= order.created_at.strftime("%Y-%m-%d") %></td>
+        <td>Waiting</td>
+        <td>
+        <button class="btn btn-link"><%= link_to "View", "#" %></button>
+        </td>
+        <td>
+        <button class="btn btn-link"><%= link_to "Finish", "##" %></button>
+        </td>
+        <td>
+        <button class="btn btn-link"><%= link_to "Cancel", "###" %></button>
+        </td>
+    <% end %>
   </tbody>
 </table>
 
