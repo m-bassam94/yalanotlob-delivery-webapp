@@ -1,24 +1,25 @@
 <h1>Order details</h1>
+<button class="btn btn-link"><%= link_to "Invite friends", inviteFriends_path(@order) %></button>
 
- <table class="table">
-    <thead class="thead-dark">
-        <tr>
-            <th>Person</th>
-            <th>Meal</th>
-            <th>Amount</th>
-            <th>Price</th>
-            <th>Comment</th>
-        </tr>
-    </thead>
-    <% @meals.each do |meal| %>
+<table class="table">
+  <thead class="thead-dark">
+  <tr>
+    <th>Person</th>
+    <th>Meal</th>
+    <th>Amount</th>
+    <th>Price</th>
+    <th>Comment</th>
+  </tr>
+  </thead>
+  <% @meals.each do |meal| %>
     <tr>
-        <td><%= meal.person%></td>
-        <td><%= meal.meal%></td>
-        <td><%= meal.amount%></td>
-        <td><%= meal.price%></td>
-        <td><%= meal.comment%></td>
+      <td><%= meal.person %></td>
+      <td><%= meal.meal %></td>
+      <td><%= meal.amount %></td>
+      <td><%= meal.price %></td>
+      <td><%= meal.comment %></td>
     </tr>
-    <% end %>
+  <% end %>
 </table>
 <br>
 
@@ -27,7 +28,7 @@
   <%= f.text_field(:person, {:value => current_user.first_name, :style => 'display: none;'}) %>
 
   <div class="form-group mx-sm-3 mb-2">
-    <%= f.label(:meal, {:class => 'sr-only'})%>
+    <%= f.label(:meal, {:class => 'sr-only'}) %>
     <%= f.text_field(:meal, {:class => 'form-control', :placeholder => 'Meal'}) %>
   </div>
 
@@ -43,10 +44,10 @@
 
   <div class="form-group mx-sm-3 mb-2">
     <%= f.label(:comment, {:class => 'sr-only'}) %>
-    <%= f.text_field(:comment, {:class => 'form-control', :placeholder => 'Comment'}) %> 
-  </div> 
+    <%= f.text_field(:comment, {:class => 'form-control', :placeholder => 'Comment'}) %>
+  </div>
 
-<%= f.number_field(:order, {:style => 'display: none;'}) %>  
-  <%= f.button 'Add',  class: 'btn btn-primary mb-2', type: 'submit' %>
+  <%= f.number_field(:order, {:style => 'display: none;'}) %>
+  <%= f.button 'Add', class: 'btn btn-primary mb-2', type: 'submit' %>
 
 <% end %>

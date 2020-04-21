@@ -1,6 +1,7 @@
 class MealsController < ApplicationController
 
   def details
+    @order = Order.where(id: params[:id]).first
     @meals = Meal.where(order: params[:id])
   end
 
