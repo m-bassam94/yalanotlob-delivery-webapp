@@ -4,9 +4,11 @@
       <div class="card-body">
         <h5 class="card-title">Latest orders</h5>
         <% @orders.each do |order| %>
-          <p class="card-text"> <%= order.orderType %> on <%= order.orderType %></p>
+          <p class="card-text">
+            <a href=<%= details_path(order) %>><%= order.orderType %></a> at <%= order.resturant %>
+            on <%= order.created_at.strftime("%Y-%m-%d - %H:%M") %></p>
         <% end %>
-<!--        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>-->
+        <!--        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>-->
         <!--        <a href="#" class="btn btn-primary">Go somewhere</a>-->
       </div>
     </div>

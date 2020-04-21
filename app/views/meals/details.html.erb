@@ -1,5 +1,6 @@
 <h1>Order details</h1>
 <button class="btn btn-link"><%= link_to "Invite friends", inviteFriends_path(@order) %></button>
+<button class="btn btn-link"><%= link_to "Menu", @order.menu, target: '_blank' %></button>
 
 <table class="table">
   <thead class="thead-dark">

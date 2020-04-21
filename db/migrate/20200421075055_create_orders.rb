@@ -3,7 +3,7 @@ class CreateOrders < ActiveRecord::Migration[6.0]
     create_table :orders do |t|
       t.string :orderType
       t.string :resturant
-      t.binary :menu
+      t.datetime :order_time
       t.references :user, null: false, foreign_key: true
 
       t.timestamps
