@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_21_063459) do
+ActiveRecord::Schema.define(version: 2020_04_21_065340) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 2020_04_21_063459) do
   end
 
   create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.integer "type"
+    t.integer "category"
     t.string "resturant"
     t.string "menu_image"
     t.bigint "user_id"
