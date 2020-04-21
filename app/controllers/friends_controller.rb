@@ -20,7 +20,14 @@ class FriendsController < ApplicationController
     @delete_id = params["unfriend-btn"]
 
     @new_friend = User.where(:email => @email).first
-    if @new_friend.present? and Friendship.where(friend_id: @new_friend.id).present?
+    if (params["email-invite"] === "" or @new_friend.nil?) and @delete_id.nil?
+      # TODO show error messages
+      flash[:danger] = "Email entered doesn't match a valid user's email."
+    elsif not @delete_id.nil?
+      @deleted_friendship = current_user.friendships.where(:friend_id => @delete_id)
+      # TODO ajax deletion
+      @deleted_friendship.delete_all
+    elsif @new_friend.present? and Friendship.where(friend_id: @new_friend.id).present?
       flash[:danger] = "#{@new_friend.first_name} is already in your friend list."
     elsif @new_friend.present? and not Friendship.where(friend_id: @new_friend.id).present?
       @friend = User.where(:email => @email).first
@@ -33,23 +40,13 @@ class FriendsController < ApplicationController
         @new_notification = Notification.create recipient_id: @friend.id, actor_id: current_user.id, action: "added you as a friend", notifiable: @new_friendship
         # TODO ajax show new friends
         # TEMP TODO refresh page
-      else
-        #render 'new'
       end
 
-      redirect_to friends_path
-    else
-      # TODO show error messages
-      flash[:danger] = "Email entered doesn't match a valid user's email."
+
     end
 
-    @deleted_friendship = current_user.friendships.where(:friend_id => @delete_id)
-    if @deleted_friendship.present?
-      # TODO ajax deletion
-      @deleted_friendship.delete_all
-      redirect_to friends_path
-    end
 
+    redirect_to friends_path
   end
 
 
