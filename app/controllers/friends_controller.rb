@@ -30,16 +30,21 @@ class FriendsController < ApplicationController
     elsif @new_friend.present? and Friendship.where(friend_id: @new_friend.id).present?
       flash[:danger] = "#{@new_friend.first_name} is already in your friend list."
     elsif @new_friend.present? and not Friendship.where(friend_id: @new_friend.id).present?
+      @do_break = nil
       @friend = User.where(:email => @email).first
-      @new_friendship = Friendship.new
-      @new_friendship.friend_id = @friend.id
-      @new_friendship.user_id = current_user.id
+      if @friend == current_user
+        flash[:danger] = "You don't have to add yourself as a friend, I'm your friend."
+      else
+        @new_friendship = Friendship.new
+        @new_friendship.friend_id = @friend.id
+        @new_friendship.user_id = current_user.id
 
-      if @new_friendship.save
-        p "SAVEEEED"
-        @new_notification = Notification.create recipient_id: @friend.id, actor_id: current_user.id, action: "added you as a friend", notifiable: @new_friendship
-        # TODO ajax show new friends
-        # TEMP TODO refresh page
+        if @new_friendship.save
+          p "SAVEEEED"
+          @new_notification = Notification.create recipient_id: @friend.id, actor_id: current_user.id, action: "added you as a friend", notifiable: @new_friendship
+          # TODO ajax show new friends
+          # TEMP TODO refresh page
+        end
       end
 
 
