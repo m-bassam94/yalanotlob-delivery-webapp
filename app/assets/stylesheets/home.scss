@@ -5,6 +5,10 @@
 body {
   background-image: url(/assets/home.jpg);
   background-size: cover;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .row {
@@ -20,4 +24,13 @@ body {
 
 .card .card-body .card-text {
   padding: 2em;
+}
+
+.container{
+  flex-grow: 1;
+}
+
+footer{
+  flex-grow: 0;
+  margin-top: 50px;
 }
