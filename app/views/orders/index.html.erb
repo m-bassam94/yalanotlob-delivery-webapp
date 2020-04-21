@@ -27,7 +27,15 @@
     <%  @orders.each do |order|%>
       <tr>
         <th scope="row"><%= @counter+1 %></th>
-        <td><%= current_user.first_name %> <%= current_user.last_name %></td>
+        <td>
+          <%= if order.category == 1
+            @category =  "Breakfast"
+          elsif order.category == 2
+            @category =  "Lunch"
+          elsif order.category == 3
+            @category =  "Dinner"
+           end %>
+        </td>
         <td><%= order.resturant %></td>
         <td>@mdo</td>
         <td><%= order.created_at.strftime("%Y-%m-%d") %></td>
