@@ -2,7 +2,22 @@
 // They will automatically be included in application.scss.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-body{
-    background-image: url(/assets/home.jpg);
-    background-size: cover;
+body {
+  background-image: url(/assets/home.jpg);
+  background-size: cover;
+}
+
+.row {
+  display: flex; /* equal height of the children */
+}
+
+.col-sm-6 {
+  flex: 1; /* additionally, equal width */
+
+  padding: 1em;
+  //border: solid;
+}
+
+.card .card-body .card-text {
+  padding: 2em;
 }
