@@ -2,7 +2,7 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <div class="card " style="margin-top: 100px;">
+            <div class="card " style="margin-top: 50px;">
             <div class="card-header">
                 <b>Your Friends</b>
             </div>
@@ -15,7 +15,7 @@
       <%= msg %>
     </div>
   <% end %>
-  
+
       <% unless @friendsToInvite.nil? %>
       <% @friendsToInvite.each do |friend| %>
           <div >
@@ -38,7 +38,7 @@
         </div>
 
         <div class="col">
-            <div class="card " style="margin-top: 100px;">
+            <div class="card " style="margin-top: 50px;">
             <div class="card-header">
                 <b>Invited friends</b>
             </div>
@@ -68,4 +68,5 @@
         </div>
     </div>
 </div>
-
+<br>
+<%= link_to "Order Details", details_path, {:class => "btn btn-primary", :style=>"margin-bottom:3cm; display:block;" }  %>
