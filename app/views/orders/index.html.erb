@@ -4,14 +4,13 @@
       <h1 class="display-4">Orders</h1>
     </div>
     <div class="col">
-       <button class="btn btn-link"><%= link_to "Start New Order", "/orders/new"%></button>
+      <button class="btn btn-link"><%= link_to "Start New Order", "/orders/new" %></button>
     </div>
   </div>
 
 
-
-<table class="table table-light">
-  <thead class="thead-light">
+  <table class="table table-light">
+    <thead class="thead-light">
     <tr>
       <th scope="col">#</th>
       <th scope="col">Order</th>
@@ -21,36 +20,36 @@
       <th scope="col">Status</th>
       <th scope="col" colspan="3">Actions</th>
     </tr>
-  </thead>
+    </thead>
 
-  <tbody>
-    <%  @orders.each do |order|%>
+    <tbody>
+    <% @orders.each do |order| %>
       <tr>
-        <th scope="row"><%= @counter+1 %></th>
+        <th scope="row"><%= @counter + 1 %></th>
         <td>
           <%= if order.category == 1
-            @category =  "Breakfast"
-          elsif order.category == 2
-            @category =  "Lunch"
-          elsif order.category == 3
-            @category =  "Dinner"
-           end %>
+                @category = "Breakfast"
+              elsif order.category == 2
+                @category = "Lunch"
+              elsif order.category == 3
+                @category = "Dinner"
+              end %>
         </td>
         <td><%= order.resturant %></td>
         <td>@mdo</td>
         <td><%= order.created_at.strftime("%Y-%m-%d") %></td>
         <td>Waiting</td>
         <td>
-        <button class="btn btn-link"><%= link_to "View", "#" %></button>
+          <button class="btn btn-link"><%= link_to "View", "#" %></button>
         </td>
         <td>
-        <button class="btn btn-link"><%= link_to "Finish", "##" %></button>
+          <button class="btn btn-link"><%= link_to "Finish", "##" %></button>
         </td>
         <td>
-        <button class="btn btn-link"><%= link_to "Cancel", "###" %></button>
+          <button class="btn btn-link"><%= link_to "Cancel", "###" %></button>
         </td>
     <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
 
 </div>
