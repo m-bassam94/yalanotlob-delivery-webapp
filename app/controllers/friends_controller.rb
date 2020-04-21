@@ -20,36 +20,38 @@ class FriendsController < ApplicationController
     @delete_id = params["unfriend-btn"]
 
     @new_friend = User.where(:email => @email).first
-    if @new_friend.present? and Friendship.where(friend_id: @new_friend.id).present?
-      flash[:danger] = "#{@new_friend.first_name} is already in your friend list."
-    elsif @new_friend.present? and not Friendship.where(friend_id: @new_friend.id).present?
-      @friend = User.where(:email => @email).first
-      @new_friendship = Friendship.new
-      @new_friendship.friend_id = @friend.id
-      @new_friendship.user_id = current_user.id
-
-      if @new_friendship.save
-        p "SAVEEEED"
-        @new_notification = Notification.create recipient_id: @friend.id, actor_id: current_user.id, action: "added you as a friend", notifiable: @new_friendship
-        # TODO ajax show new friends
-        # TEMP TODO refresh page
-      else
-        #render 'new'
-      end
-
-      redirect_to friends_path
-    else
+    if (params["email-invite"] === "" or @new_friend.nil?) and @delete_id.nil?
       # TODO show error messages
       flash[:danger] = "Email entered doesn't match a valid user's email."
-    end
-
-    @deleted_friendship = current_user.friendships.where(:friend_id => @delete_id)
-    if @deleted_friendship.present?
+    elsif not @delete_id.nil?
+      @deleted_friendship = current_user.friendships.where(:friend_id => @delete_id)
       # TODO ajax deletion
       @deleted_friendship.delete_all
-      redirect_to friends_path
+    elsif @new_friend.present? and Friendship.where(friend_id: @new_friend.id).present?
+      flash[:danger] = "#{@new_friend.first_name} is already in your friend list."
+    elsif @new_friend.present? and not Friendship.where(friend_id: @new_friend.id).present?
+      @do_break = nil
+      @friend = User.where(:email => @email).first
+      if @friend == current_user
+        flash[:danger] = "You don't have to add yourself as a friend, I'm your friend."
+      else
+        @new_friendship = Friendship.new
+        @new_friendship.friend_id = @friend.id
+        @new_friendship.user_id = current_user.id
+
+        if @new_friendship.save
+          p "SAVEEEED"
+          @new_notification = Notification.create recipient_id: @friend.id, actor_id: current_user.id, action: "added you as a friend", notifiable: @new_friendship
+          # TODO ajax show new friends
+          # TEMP TODO refresh page
+        end
+      end
+
+
     end
 
+
+    redirect_to friends_path
   end
 
 
