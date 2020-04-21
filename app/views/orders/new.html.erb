@@ -17,11 +17,6 @@
                 <%= f.text_field(:from, {:class => 'form-control', :placeholder => 'Restaurant', :style => 'margin-bottom: 30px;'}) %>
             </div>
 
-            <div class="form-group ">
-                <%= f.label(:friends, {:class => 'sr-only'})%>
-                <%= f.select :friends, [], { prompt: "Friends to invite..." }, { class: "form-control", :style => 'margin-bottom: 30px;'} %>
-            </div>
-
             <div class="custom-file">
                 <%= f.label(:menu, {:class => 'custom-file-label', :for=>"menu"}) %>
                 <%= f.file_field(:menu, {:id=>"menu", :class => 'custom-file-input', :style => 'margin-bottom: 30px;'}) %> 
@@ -31,15 +26,8 @@
 
             <% end %>
         </div>
-        <div class="col">
-            <div class="card " style="margin-top: 100px;">
-            <div class="card-header">
-                <b>Invited Friends</b>
-            </div>
-            <div class="card-body">
-                
-            </div>
-            </div>
-        </div>
+
+
+        
     </div>
 </div>
