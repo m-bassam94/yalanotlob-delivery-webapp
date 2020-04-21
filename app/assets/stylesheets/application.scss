@@ -18,7 +18,7 @@
 @import "font-awesome";
 
 
-.dropdown-menu {
+.notifications.dropdown-menu {
   top: 60px;
   right: 0px;
   left: unset;
@@ -28,7 +28,7 @@
   padding: 0px;
 }
 
-.dropdown-menu:before {
+.notifications.dropdown-menu:before {
   content: "";
   position: absolute;
   top: -20px;
@@ -63,7 +63,7 @@
 }
 
 @media (max-width: 640px) {
-  .dropdown-menu {
+  .notifications.dropdown-menu {
     top: 50px;
     left: -16px;
     width: 290px;
