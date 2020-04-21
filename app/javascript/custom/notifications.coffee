@@ -4,17 +4,22 @@ class Notifications
     @setup() if @notifications.length > 0
 
   setup: ->
+    @validateSessionAndSet()
+    $(document).on "turbolinks:load", =>
+      @validateSessionAndSet()
+
     $("[data-behavior='notifications-link']").on("click", @handleClick)
 
-#    setInterval () ->
+    setInterval  @getNotification, 5000
+
+
+  getNotification: () =>
     $.ajax(
       url: "/notifications.json"
       dataType: "JSON"
       method: "GET"
-      success: @handleSuccess
+      success: @handleDataToSession
     )
-#    , 5000
-
 
   handleClick: (e) =>
     $.ajax(
@@ -25,7 +30,16 @@ class Notifications
         $("[data-behavior='notifications-link']").attr('data-count': '0')
     )
 
-  handleSuccess: (data) =>
+  handleDataToSession: (data) =>
+    sessionStorage['notifications'] = JSON.stringify(data)
+    @setNotifications()
+
+  validateSessionAndSet: () =>
+    if sessionStorage['notifications'] != ""
+      @setNotifications()
+
+  setNotifications: () =>
+    data = JSON.parse(sessionStorage['notifications'])
     unread_count = '
       <li class="head text-light bg-dark">
         <div class="row">
