@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   # After creating order, redirect to invite friends page
   get '/orders/invite/:id' => 'orders#inviteFriends', as: 'inviteFriends'
   post '/orders/invite/:id' => 'orders#invite', as: 'invite'
+  delete '/orders/invite/:id' => 'orders#cancel', as: 'cancel'
 
   resources :notifications do
     collection do

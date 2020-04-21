@@ -1,18 +1,5 @@
 class OrdersController < ApplicationController
 
-    def index
-        
-    end
-
-    def show
-    end
-
-    def new
-    end
-
-    def edit
-    end
-
     def create
         @order = Order.new(order_params)
         @order.user_id = current_user.id
@@ -34,27 +21,37 @@ class OrdersController < ApplicationController
         end 
     end
 
-    def invite
-        puts params
+    def cancel
+        @cancel_id = params["cancel-btn"]
+        @order = Order.find(id= params['id'])
+        @invite = Invite.where(order_id: @order.id)
+        p 'cancel id ====', @cancel_id
+        if not @cancel_id.nil?
+          p params
+          @deleted_invitation = @invite.where(user_id: @cancel_id)      
+          @deleted_invitation.delete_all
+        end
+        redirect_to inviteFriends_path
+      end
 
+    def invite
         @friend_id = params['invite-btn'] 
         @friend = User.find(id=@friend_id)
         @order = Order.find(id= params['id'])
-        p @order, @friend
-        @new_invite = Invite.new()
 
-        @new_invite.user = @friend
-        @new_invite.order= @order
-        puts @new_invite
-        @new_invite.save
-        
+        if  Invite.where(user_id: @friend.id, order_id: @order.id).present?
+            flash[:danger] = "#{@friend.first_name} is already invited"
+            redirect_to inviteFriends_path
+        elsif 
+            @new_invite = Invite.new()
+            @new_invite.user = @friend
+            @new_invite.order= @order
+            @new_invite.save
+            redirect_to inviteFriends_path
+        end
     end
 
-    def update
-    end
 
-    def destroy
-    end
 
     private def order_params
         params.require(:newOrder).permit(:orderType, :resturant, :menu)

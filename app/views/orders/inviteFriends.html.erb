@@ -9,6 +9,13 @@
             <div class="card-body">
             
 <%= form_for :invite, url: invite_url do |f| %>
+
+<% flash.each do |type, msg| %>
+    <div class="alert alert-<%= type %> ">
+      <%= msg %>
+    </div>
+  <% end %>
+  
       <% unless @friendsToInvite.nil? %>
       <% @friendsToInvite.each do |friend| %>
           <div >
@@ -37,7 +44,7 @@
             </div>
             <div class="card-body">
 
-<%= form_for :invite, url: invite_url do |f| %>
+<%= form_for :cancel, url: cancel_path, method: :delete do |f| %>
       <% unless @invitedFriends.nil? %>
       <% @invitedFriends.each do |friend| %>
           <div >
@@ -47,7 +54,7 @@
               </h5>
               <p><%= friend.email %></p>
 
-              <%= f.button "Invite", action_name: 'orders#invite', name: "invite-btn", value: friend.id, class: "btn btn-primary" %>
+              <%= f.button "Cancel", action_name: 'orders#cancel', name: "cancel-btn", value: friend.id, class: "btn btn-danger" %>
             </div>
           </div>
       <% end %>
