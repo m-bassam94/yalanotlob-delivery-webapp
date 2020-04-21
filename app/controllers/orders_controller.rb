@@ -25,6 +25,13 @@ class OrdersController < ApplicationController
         current_user.friendships.each do |friendship|
           @friendsToInvite= @friends_arr.push(User.find(id = friendship.friend_id))
         end 
+
+        @invited_arr = []
+        @order = Order.find(id= params['id'])
+        @invite = Invite.where(order_id: @order.id)
+        @invite.each do |invitation|
+          @invitedFriends= @invited_arr.push(User.find(id = invitation.user_id))
+        end 
     end
 
     def invite
