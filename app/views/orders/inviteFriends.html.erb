@@ -1,0 +1,50 @@
+<h1>Invite friends to you order</h1>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card " style="margin-top: 100px;">
+            <div class="card-header">
+                <b>Your Friends</b>
+            </div>
+            <div class="card-body">
+<%= form_with model: @friendships, method: "post" do |f| %>
+
+      <% unless @friendsToInvite.nil? %>
+      <% @friendsToInvite.each do |friend| %>
+    
+
+        
+          <div >
+            <div class="card-body">
+              <h5 class="card-title">
+                <%= "#{friend.first_name}  #{friend.last_name}" %>
+              </h5>
+              <p><%= friend.email %></p>
+
+              <%= f.button "Invite", action_name: 'orders#invite', name: "invite-btn", value: friend.id, class: "btn btn-primary" %>
+            </div>
+          </div>
+      <% end %>
+    <% else %>
+      <h4 class="text-center col-12">You have no friends yet.</h4>
+    <% end %>
+
+  
+<% end %>          
+            </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card " style="margin-top: 100px;">
+            <div class="card-header">
+                <b>Invited friends</b>
+            </div>
+            <div class="card-body">
+                            
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+

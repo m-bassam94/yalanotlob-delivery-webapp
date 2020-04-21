@@ -23,8 +23,7 @@
                 <%= "#{friend.first_name}  #{friend.last_name}" %>
               </h5>
               <p><%= friend.email %></p>
-              <!--        <p class="card-text"></p>-->
-              <!--            <a href="#" class="btn btn-danger">Unfriend</a>-->
+
               <%= f.button "Unfriend", action_name: 'friends#destroy', name: "unfriend-btn", value: friend.id, class: "btn btn-danger" %>
             </div>
           </div>

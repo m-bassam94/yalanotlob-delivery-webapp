@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   get '/orders/details/:id' => 'meals#details', as: 'details'
   post '/orders/details/:id' => 'meals#addMeal', as: 'addMeal'
 
+  # After creating order, redirect to invite friends page
+  get '/orders/invite/:id' => 'orders#inviteFriends', as: 'inviteFriends'
+
   resources :notifications do
     collection do
       post :mark_as_read

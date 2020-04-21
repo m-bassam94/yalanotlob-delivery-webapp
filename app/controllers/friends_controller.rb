@@ -60,7 +60,7 @@ class FriendsController < ApplicationController
   end
 
   def destroy
-    #p "ENTERED DESTROY"
+    # p "ENTERED DESTROY"
   end
 
 end
