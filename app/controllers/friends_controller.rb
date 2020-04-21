@@ -27,6 +27,7 @@ class FriendsController < ApplicationController
       @deleted_friendship = current_user.friendships.where(:friend_id => @delete_id)
       # TODO ajax deletion
       @deleted_friendship.delete_all
+      
     elsif @new_friend.present? and Friendship.where(friend_id: @new_friend.id).present?
       flash[:danger] = "#{@new_friend.first_name} is already in your friend list."
     elsif @new_friend.present? and not Friendship.where(friend_id: @new_friend.id).present?
@@ -60,7 +61,7 @@ class FriendsController < ApplicationController
   end
 
   def destroy
-    #p "ENTERED DESTROY"
+    # p "ENTERED DESTROY"
   end
 
 end

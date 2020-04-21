@@ -27,11 +27,11 @@
       <tr>
         <th scope="row"><%= @counter + 1 %></th>
         <td>
-          <%= if order.category == 1
+          <%= if order.orderType == 1
                 @category = "Breakfast"
-              elsif order.category == 2
+              elsif order.orderType == 2
                 @category = "Lunch"
-              elsif order.category == 3
+              elsif order.orderType == 3
                 @category = "Dinner"
               end %>
         </td>
@@ -40,7 +40,7 @@
         <td><%= order.created_at.strftime("%Y-%m-%d") %></td>
         <td>Waiting</td>
         <td>
-          <button class="btn btn-link"><%= link_to "View", "#" %></button>
+          <button class="btn btn-link"><%= link_to "View", details_path(order) %></button>
         </td>
         <td>
           <button class="btn btn-link"><%= link_to "Finish", "##" %></button>
