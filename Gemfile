@@ -58,4 +58,3 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'activestorage'
 gem 'devise'
 gem 'figaro'
-gem "font-awesome-rails"

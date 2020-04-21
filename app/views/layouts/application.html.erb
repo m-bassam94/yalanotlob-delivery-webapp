@@ -33,12 +33,13 @@
 
 
       <% if user_signed_in? %>
-<!--        notification part-->
+        <!--        notification part-->
         <ul class="navbar-nav md-10">
           <li class="nav-item dropdown notifications" data-behavior="notifications">
             <a class="dropdown-toggle nav-link" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="">
               <span class="fa-stack has-badge" data-behavior="notifications-link">
-                <%= fa_icon "bell-o", class: "fa-2x" %>
+                <%#= fa_icon "bell-o", class: "fa-2x" %>
+                <i class="far fa-bell fa-2x"></i>
               </span>
             </a>
             <ul class="dropdown-menu notifications" data-behavior="notification-items">
@@ -58,7 +59,11 @@
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
               <!--              <a class="dropdown-item" href="#">Dashboard</a>-->
               <!--              <a class="dropdown-item" href="#">Edit Profile</a>-->
-              <a class="dropdown-item" href="<%= destroy_user_session_path %>" data-method="DELETE">Log Out</a>
+              <p class="dropdown-item"> <%= current_user.email %></p>
+              <a class="dropdown-item" href="<%= destroy_user_session_path %>" data-method="DELETE">
+                <i class="fas fa-sign-out-alt"></i>
+                Log Out
+              </a>
             </div>
           </li>
         </ul>
