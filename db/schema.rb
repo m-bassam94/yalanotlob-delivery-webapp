@@ -10,10 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< Updated upstream
 ActiveRecord::Schema.define(version: 2020_04_21_102126) do
 
-  create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
     t.bigint "record_id", null: false
@@ -23,7 +22,7 @@ ActiveRecord::Schema.define(version: 2020_04_21_102126) do
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table "active_storage_blobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "active_storage_blobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "key", null: false
     t.string "filename", null: false
     t.string "content_type"
@@ -34,7 +33,7 @@ ActiveRecord::Schema.define(version: 2020_04_21_102126) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "friendships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "friendships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "friend_id"
     t.datetime "created_at", precision: 6, null: false
@@ -43,20 +42,20 @@ ActiveRecord::Schema.define(version: 2020_04_21_102126) do
     t.index ["user_id"], name: "fk_rails_e3733b59b7"
   end
 
-  create_table "groups", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "groups", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name", null: false
     t.bigint "creator", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "groups_users", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "groups_users", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "group_id", null: false
     t.index ["user_id", "group_id"], name: "index_groups_users_on_user_id_and_group_id"
   end
 
-  create_table "invites", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "invites", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "order_id", null: false
     t.bigint "user_id", null: false
     t.boolean "joined", default: false
@@ -65,24 +64,8 @@ ActiveRecord::Schema.define(version: 2020_04_21_102126) do
     t.index ["order_id"], name: "index_invites_on_order_id"
     t.index ["user_id"], name: "index_invites_on_user_id"
   end
-=======
-ActiveRecord::Schema.define(version: 2020_04_16_182451) do
->>>>>>> Stashed changes
 
-  create_table "groups", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.string "name", null: false
-    t.bigint "creator", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "groups_users", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "group_id", null: false
-    t.index ["user_id", "group_id"], name: "index_groups_users_on_user_id_and_group_id"
-  end
-
-  create_table "meals", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "meals", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "person"
     t.string "meal"
     t.integer "amount"
@@ -93,29 +76,19 @@ ActiveRecord::Schema.define(version: 2020_04_16_182451) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-<<<<<<< Updated upstream
-  create_table "notifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "notifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "recipient_id"
     t.bigint "actor_id"
     t.datetime "read_at"
     t.string "action"
     t.string "notifiable_type"
     t.bigint "notifiable_id"
-=======
-  create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.integer "type"
-    t.string "resturant"
-    t.string "menu_image"
-    t.text "food"
-    t.bigint "user_id"
->>>>>>> Stashed changes
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["notifiable_type", "notifiable_id"], name: "index_notifications_on_notifiable_type_and_notifiable_id"
   end
 
-<<<<<<< Updated upstream
-  create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "orderType"
     t.string "resturant"
     t.binary "menu"
@@ -125,10 +98,7 @@ ActiveRecord::Schema.define(version: 2020_04_16_182451) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-=======
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
->>>>>>> Stashed changes
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "email", limit: 256, default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
