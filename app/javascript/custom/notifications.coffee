@@ -8,7 +8,7 @@ class Notifications
     $(document).on "turbolinks:load", =>
       @validateSessionAndSetNotifications()
 
-    $("[data-behavior='notifications-link']").on("click", @handleClick)
+    $("[data-behavior='notifications-link']").on("click", @handleReadClick)
 
     setInterval  @getNotification, 5000
 
@@ -21,7 +21,7 @@ class Notifications
       success: @handleDataToSession
     )
 
-  handleClick: (e) =>
+  handleReadClick: (e) =>
     $.ajax(
       url: "/notifications/mark_as_read"
       dataType: "JSON"
