@@ -35,16 +35,18 @@
           </div>
         <% end %>
         <% unless @groups.nil? %>
-          <tbody>
-          <% @groups.each do |group| %>
-            <tr>
-              <td><%= group.name %></td>
-              <td><%= link_to 'Edit Group', group_path(group), class: "btn btn-primary" %></td>
-              <td><%= link_to 'Delete Group', group_path(group), class: "btn btn-primary", method: :delete,
-                              data: {confirm: 'Are you sure?'} %></td>
-            </tr>
-          <% end %>
-          </tbody>
+            <tbody>
+            <% @groups.each do |group| %>
+              <tr>
+                <td><%= group.name %></td>
+                <%= form_tag  group_path(group), method: "get" do |form| %>
+                <td><%= submit_tag 'Edit Group',   class: "btn btn-primary" %></td>
+                <% end %>
+                <td><%= link_to 'Delete Group', group_path(group), class: "btn btn-primary", method: :delete,
+                                data: {confirm: 'Are you sure?'} %></td>
+              </tr>
+            <% end %>
+            </tbody>
           </table>
         <% end %>
 

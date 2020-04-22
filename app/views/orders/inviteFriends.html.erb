@@ -36,7 +36,39 @@
         </div>
       </div>
     </div>
-
+    <div class="col">
+      <div class="card " style="margin-top: 50px;">
+        <div class="card-header">
+          <b>Your groups</b>
+        </div>
+        <div class="card-body">
+          <%= form_for :inviteGroup, url: inviteGroup_url do |f| %>
+          <% flash.each do |type, msg| %>
+              <div class="alert alert-<%= type %> ">
+                <%= msg %>
+              </div>
+            <% end %>
+              <% unless @groups == [] %>
+                  <% @groups.each do |group| %>                
+                      <div>
+                          <div class="card-body">
+                              <h5 class="card-title"><%= group.name %></h5>                    
+                              <% group.users.all.each do |user| %>
+                                  <p>
+                                  <h6><%= "#{user.first_name}  #{user.last_name}" %></h6>
+                                  </p>
+                              <% end %>
+                              <%= f.button 'Invite Group', action_name: 'orders#inviteGroup', name: "inviteGroup-btn", value: group.id, class: "btn btn-primary" %>
+                          </div>
+                      </div>
+                  <% end %>
+              <% else %>
+                  <h4 class="text-center col-12">You have no groups</h4>
+              <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
     <div class="col">
       <div class="card " style="margin-top: 50px;">
         <div class="card-header">
@@ -72,7 +104,7 @@
           <b>Joined friends</b>
         </div>
         <div class="card-body">
-        <%= form_for :cancel, url: cancel_path, method: :delete do |f| %>
+        
             <% unless @joinedFriends.nil? %>
               <% @joinedFriends.each do |friend| %>
                 <div>
@@ -88,7 +120,7 @@
             <% else %>
               <h4 class="text-center col-12">No friends have Joined yet.</h4>
             <% end %>
-          <% end %>
+          
         </div>
         </div>
     </div>

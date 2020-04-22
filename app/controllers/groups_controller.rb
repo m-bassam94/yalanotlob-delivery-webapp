@@ -13,6 +13,7 @@ class GroupsController < ApplicationController
     else
       @group_members = @group.users.all
     end
+    
   end
 
   def create
