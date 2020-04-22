@@ -3,11 +3,18 @@ class OrdersController < ApplicationController
 
   def index
     @orders = Order.where(user_id: current_user.id)
-    @counter = 0
-    @invites = Invite.all
-    @orders_from_invitations = Order.where(id: Invite.find(user_id = current_user.id).order_id)
-    @orders = @orders.or(@orders_from_invitations)
+    @invites = Invite.where(user_id: current_user.id)
+    @orders_from_invitations = []
+    @invites.each do |invite|
+      @orders_from_invitations.append(Order.where(id: invite.order_id))
+    end
 
+    @orders.each do |order|
+      @orders_from_invitations.append(order)
+    end
+
+    @orders_from_invitations = @orders_from_invitations.reorder('created_at DESC')
+    
   end
 
   def new
@@ -83,6 +90,9 @@ class OrdersController < ApplicationController
     @order.status = "Canceled"
     @order.save 
     redirect_to orders_path
+  end
+
+
   def inviteGroup
     @group_id = params["inviteGroup-btn"]
     @order = Order.find(id = params['id'])
