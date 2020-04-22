@@ -26,6 +26,10 @@ class OrdersController < ApplicationController
       @friendsToInvite = @friends_arr.push(User.find(id = friendship.friend_id))
     end
 
+    @groups = Group.where(creator: current_user.id)
+
+    
+
     @invited_arr = []
     @order = Order.find(id = params['id'])
     @invite = Invite.where(order_id: @order.id)
@@ -69,6 +73,24 @@ class OrdersController < ApplicationController
     end
   end
 
+  def inviteGroup
+    @group_id = params["inviteGroup-btn"]
+    @order = Order.find(id = params['id'])
+    @groupToInvite = Group.find_by(id: @group_id)
+    @groupToInvite_members = @groupToInvite.users.all
+    
+    @groupToInvite_members.each do |user|
+      if Invite.where(user_id: user.id, order_id: @order.id).present?
+        flash[:danger] = "#{user.first_name} is already invited"
+      elsif       
+        @new_invite = Invite.new()
+        @new_invite.user = user
+        @new_invite.order = @order
+        @new_invite.save
+      end
+    end
+    redirect_to inviteFriends_path
+  end
 
   private def order_params
     params.require(:newOrder).permit(:orderType, :resturant, :menu)
