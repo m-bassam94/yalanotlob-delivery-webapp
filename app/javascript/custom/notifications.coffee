@@ -8,7 +8,7 @@ class Notifications
     $(document).on "turbolinks:load", =>
       @validateSessionAndSetNotifications()
 
-    $("[data-behavior='notifications-link']").on("click", @handleReadClick)
+    $("[data-behavior='notifications-read']").on("click", @handleReadClick)
 
     setInterval  @getNotification, 5000
 
@@ -48,6 +48,8 @@ class Notifications
           <div class="row">
             <div class="col-lg-12 col-sm-12 col-12">
               <span>Notifications (' + data.length + ')</span>
+              <a href="" data-behavior="notifications-read" class="float-right text-light">Mark all as read</a>
+
             </div>
           </div>
         </li>
