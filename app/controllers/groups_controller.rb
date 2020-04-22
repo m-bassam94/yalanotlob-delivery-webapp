@@ -1,6 +1,7 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user!
 
+<<<<<<< Updated upstream
   def index
     @groups = Group.where(creator: current_user.id)
   end
@@ -12,6 +13,18 @@ class GroupsController < ApplicationController
       redirect_to :groups
     else
       @group_members = @group.users.all
+=======
+    def show
+      @groups = Group.where(creator: current_user.id)
+        @group = Group.find_by(id: params[:id], creator: current_user.id)
+        if @group.nil?
+            flash[:group_error] = "No Group exists with this id"
+            redirect_to :groups
+        else
+         @group.users.all
+          
+         end
+>>>>>>> Stashed changes
     end
   end
 
