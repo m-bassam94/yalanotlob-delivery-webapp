@@ -6,11 +6,18 @@ class OrdersController < ApplicationController
     @counter = 0
   end
 
+  def new
+    @order= Order.new
+  end
+
   def create
     @order = Order.new(order_params)
     @order.user_id = current_user.id
-    @order.save
-    redirect_to inviteFriends_path(@order)
+    if(@order.save)
+      redirect_to inviteFriends_path(@order)
+    else
+      render 'new'
+    end    
   end
 
   def inviteFriends

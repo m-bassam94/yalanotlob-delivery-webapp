@@ -5,8 +5,12 @@
     <div class="col">
       <%= form_for :newOrder, url: newOrder_url do |f| %>
 
-        <%= f.text_field(:person, {:value => current_user.first_name, :style => 'display: none;'}) %>
-
+        <% if @order.errors.any? %>
+          <% @order.errors.full_messages.each do |msg| %>
+              <div class="alert alert-danger"><%= msg %></div>
+          <% end %>    
+        <% end %>
+        
         <div class="form-group ">
           <%= f.label(:orderType, {:class => 'sr-only'}) %>
           <%= f.select :orderType, ['Breakfast', 'lunch', 'Dinner'], {prompt: "Order for..."}, {class: "form-control", :style => 'margin-top: 100px; margin-bottom: 30px;'} %>
