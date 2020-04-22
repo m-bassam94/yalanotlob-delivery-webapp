@@ -11,17 +11,17 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @order= Order.new
+    @order = Order.new
   end
 
   def create
     @order = Order.new(order_params)
     @order.user_id = current_user.id
-    if(@order.save)
+    if (@order.save)
       redirect_to inviteFriends_path(@order)
     else
       render 'new'
-    end    
+    end
   end
 
   def inviteFriends
@@ -31,9 +31,6 @@ class OrdersController < ApplicationController
     end
 
     @groups = Group.where(creator: current_user.id)
-
-    
-
     @invited_arr = []
     @order = Order.find(id = params['id'])
     @invite = Invite.where(order_id: @order.id)
@@ -45,7 +42,7 @@ class OrdersController < ApplicationController
     @joined = Invite.where(order_id: @order.id, joined: true)
     @joined.each do |invitation|
       @joinedFriends = @joined_arr.push(User.find(id = invitation.user_id))
-    end    
+    end
   end
 
   def cancel
@@ -81,19 +78,20 @@ class OrdersController < ApplicationController
     @order_id = params[:id]
     @order = Order.find(id = @order_id)
     @order.status = "Canceled"
-    @order.save 
+    @order.save
     redirect_to orders_path
+  end
+
   def inviteGroup
     @group_id = params["inviteGroup-btn"]
     @order = Order.find(id = params['id'])
     @groupToInvite = Group.find_by(id: @group_id)
     @groupToInvite_members = @groupToInvite.users.all
-    
+
     @groupToInvite_members.each do |user|
       if Invite.where(user_id: user.id, order_id: @order.id).present?
         flash[:danger] = "#{user.first_name} is already invited"
-      elsif       
-        @new_invite = Invite.new()
+      elsif @new_invite = Invite.new()
         @new_invite.user = user
         @new_invite.order = @order
         @new_invite.save
@@ -106,7 +104,7 @@ class OrdersController < ApplicationController
     @order_id = params[:id]
     @order = Order.find(id = @order_id)
     @order.status = "Finished"
-    @order.save 
+    @order.save
     redirect_to orders_path
   end
 
