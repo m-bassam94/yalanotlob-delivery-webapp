@@ -3,7 +3,7 @@
     <div class="card bg-dark text-white">
     <h5 class="card-header">Latest orders</h5>
       <div class="card-body">
-        <% @orders.each do |order| %>
+        <% @orders_from_invitations.each do |order| %>
           <p class="card-text">
             <a class="btn btn-primary" href=<%= details_path(order) %>><%= order.orderType %></a> at <%= order.resturant %>
             on <%= order.created_at.strftime("%Y-%m-%d - %H:%M") %></p>
@@ -16,9 +16,9 @@
 
      <h5 class="card-header">Friends activity</h5>
       <div class="card-body">
-          <%= @friends.each do |friend| %>
-            <p class="card-text"><%= friend.id %></p>
-          <% end %>
+          <%#= @friends.each do |friend| %>
+<!--            <p class="card-text"><%#= friend.id %></p>-->
+          <%# end %>
       </div>
 
 
