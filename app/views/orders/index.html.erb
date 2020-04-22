@@ -32,7 +32,7 @@
         <td><%= order.resturant %></td>
         <td><%= @invites.count {|invite| invite.order_id == order.id } %></td>
         <td><%= @invites.count {|invite| (invite.order_id == order.id && invite.joined == true)} %></td>
-        <td>Waiting</td>
+        <td><%= order.status %></td>
         <td>
           <%= link_to "View", details_path(order) , class: "btn btn-primary" %>
         </td>
