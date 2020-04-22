@@ -1,16 +1,16 @@
-<div class="container bg-light">
+<div class="container bg-dark">
   <div class="row">
-    <div class="col">
-      <h1 class="display-4">Orders</h1>
-    </div>
-    <div class="col">
-      <button class="btn btn-link"><%= link_to "Start New Order", "/orders/new" %></button>
-    </div>
+  
+    <div class="col-md-4"></div>
+<div class="col-md-4" style="margin: 10px;">
+     <%= link_to "Start New Order", "/orders/new" , class: "btn btn-primary"%>
+</div>
+<div class="col-md-4"></div>
   </div>
 
 
-  <table class="table table-light">
-    <thead class="thead-light">
+  <table class="table table-dark">
+    <thead class="thead-dark">
     <tr>
       <th scope="col">#</th>
       <th scope="col">Order</th>
@@ -40,13 +40,13 @@
         <td><%= order.created_at.strftime("%Y-%m-%d") %></td>
         <td>Waiting</td>
         <td>
-          <button class="btn btn-link"><%= link_to "View", details_path(order) %></button>
+          <%= link_to "View", details_path(order) , class: "btn btn-primary" %>
         </td>
         <td>
-          <button class="btn btn-link"><%= link_to "Finish", "##" %></button>
+          <%= link_to "Finish", "##" , class: "btn btn-primary" %>
         </td>
         <td>
-          <button class="btn btn-link"><%= link_to "Cancel", "###" %></button>
+         <%= link_to "Cancel", "###" , class: "btn btn-primary" %>
         </td>
     <% end %>
     </tbody>
