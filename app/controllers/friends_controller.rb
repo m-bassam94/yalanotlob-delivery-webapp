@@ -78,7 +78,15 @@ class FriendsController < ApplicationController
       # TEMP TODO refresh page
     end
 
-    render json: {status: :true}
+    redirect_to friends_path
+
+  end
+
+  def decline
+    id= params[:id]
+    notification = Notification.where(:actor_id => id) and Notification.where(:recipient_id => current_user.id )
+    Notification.delete(notification)
+    redirect_to friends_path
 
   end
 
