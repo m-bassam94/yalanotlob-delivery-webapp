@@ -17,11 +17,12 @@
     <% unless @friends.nil? %>
       <% @friends.each do |friend| %>
         <div class="col-12 col-sm-6 col-md-4">
-          <div class="card w-100 p-3 border-0">
-            <div class="card-body">
-              <h5 class="card-title">
+          <div class="card bg-dark text-white">
+          <h5 class="card-header">
                 <%= "#{friend.first_name}  #{friend.last_name}" %>
               </h5>
+            <div class="card-body">
+              
               <p><%= friend.email %></p>
 
               <%= f.button "Unfriend", action_name: 'friends#destroy', name: "unfriend-btn", value: friend.id, class: "btn btn-danger" %>
