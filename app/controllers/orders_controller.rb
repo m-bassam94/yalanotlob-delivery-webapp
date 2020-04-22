@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.user_id = current_user.id
     @order.save
-    redirect_to inviteFriends_path @order
+    redirect_to inviteFriends_path(@order)
   end
 
   def inviteFriends
@@ -25,6 +25,12 @@ class OrdersController < ApplicationController
     @invite.each do |invitation|
       @invitedFriends = @invited_arr.push(User.find(id = invitation.user_id))
     end
+
+    @joined_arr = []
+    @joined = Invite.where(order_id: @order.id, joined: true)
+    @joined.each do |invitation|
+      @joinedFriends = @joined_arr.push(User.find(id = invitation.user_id))
+    end    
   end
 
   def cancel
