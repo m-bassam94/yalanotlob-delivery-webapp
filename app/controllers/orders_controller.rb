@@ -4,6 +4,7 @@ class OrdersController < ApplicationController
   def index
     @orders = Order.where(user_id: current_user.id)
     @counter = 0
+    @invites = Invite.all
   end
 
   def new
