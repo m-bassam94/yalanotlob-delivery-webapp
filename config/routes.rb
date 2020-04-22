@@ -8,7 +8,6 @@ Rails.application.routes.draw do
 
   root to: "home#index"
 
-
   get '/orders/new' => 'orders#new'
   post '/orders' => 'orders#create', as: 'newOrder'
 

@@ -4,6 +4,10 @@ class OrdersController < ApplicationController
   def index
     @orders = Order.where(user_id: current_user.id)
     @counter = 0
+    @invites = Invite.all
+    @orders_from_invitations = Order.where(id: Invite.find(user_id = current_user.id).order_id)
+    @orders = @orders.or(@orders_from_invitations)
+
   end
 
   def new
@@ -91,6 +95,18 @@ class OrdersController < ApplicationController
     end
     redirect_to inviteFriends_path
   end
+
+  def finish
+    @order_id = params['finish-btn']
+    @order = Order.find(id = @order_id)
+    @order.status = "Finished"
+    @order.save 
+  end
+
+  def cancel_order
+
+  end
+
 
   private def order_params
     params.require(:newOrder).permit(:orderType, :resturant, :menu)
