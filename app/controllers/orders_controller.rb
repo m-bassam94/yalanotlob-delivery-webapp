@@ -81,7 +81,10 @@ class OrdersController < ApplicationController
     elsif @new_invite = Invite.new()
       @new_invite.user = @friend
       @new_invite.order = @order
-      @new_invite.save
+      if @new_invite.save
+        Notification.create recipient_id: @friend.id, actor_id: current_user.id, action: "invited you to <a href=\"/orders/details/#{@order.id}\">#{@order.orderType}</a> at #{@order.resturant}.", category: 2, model: "orders"
+
+      end
       redirect_to inviteFriends_path
     end
   end
@@ -123,5 +126,15 @@ class OrdersController < ApplicationController
 
   private def order_params
     params.require(:newOrder).permit(:orderType, :resturant, :menu)
+  end
+
+  def accept
+
+    #Notification.find()
+    redirect_to '/orders'
+  end
+
+  def decline
+
   end
 end

@@ -4,8 +4,12 @@ Rails.application.routes.draw do
   resources :groups_users
   resources :orders
   resources :friends
+  # notifications routes
   get '/friends/:id/accept', to: 'friends#accept'
   get '/friends/:id/decline', to: 'friends#decline'
+
+  get '/orders/:id/accept', to: 'orders#accept'
+  get '/orders/:id/decline', to: 'orders#decline'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   root to: "home#index"
