@@ -53,7 +53,7 @@ class Notifications
         </li>
         '
       items = $.map data, (notification) =>
-        model = notification.notifiable.ty
+        model = notification.model
         returnStmt = '
         <li class="notifcation-box">
         <div class="row">
@@ -64,11 +64,13 @@ class Notifications
         <strong class="text-info">' +
           notification.actor.first_name + " " + notification.actor.last_name +
           '</strong><div>
-         ' + notification.action + '</div>'
+         ' + notification.action + '</div><div><a href="'
 
-        returnStmt +=
-          '<div>
-          <a href="">
+        returnStmt += notification.model
+        returnStmt += "/"
+        returnStmt += notification.actor.id
+        returnStmt += "/accept"
+        returnStmt += '">
           <button type="button" className="btn btn-success btn-sm">Accept</button>
           </a>
           <a href="">
@@ -76,7 +78,7 @@ class Notifications
           </a>
           </div>'
         returnStmt += '
-          <small class="text-warning">' + Date(notification.notifiable.created_at) + '</small>
+          <small class="text-warning">' + Date(notification.created_at) + '</small>
           </div>
           </div>
           </li>

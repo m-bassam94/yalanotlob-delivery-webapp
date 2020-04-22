@@ -36,16 +36,9 @@ class FriendsController < ApplicationController
       if @friend == current_user
         flash[:danger] = "You don't have to add yourself as a friend, I'm your friend."
       else
-        @new_friendship = Friendship.new
-        @new_friendship.friend_id = @friend.id
-        @new_friendship.user_id = current_user.id
+        Notification.create recipient_id: @friend.id, actor_id: current_user.id, action: "wants to add you as a friend.", category: 2, model: "friends"
 
-        if @new_friendship.save
-          p "SAVEEEED"
-          @new_notification = Notification.create recipient_id: @friend.id, actor_id: current_user.id, action: "added you as a friend", category: 2, notifiable: @new_friendship
-          # TODO ajax show new friends
-          # TEMP TODO refresh page
-        end
+
       end
 
 
@@ -57,6 +50,35 @@ class FriendsController < ApplicationController
 
 
   def show
+
+  end
+
+  def accept
+    friend_id = params[:id]
+    p "ACCEPTED"
+    @new_friend = User.where(:id => friend_id).first
+    @new_self_friendship = Friendship.new
+    @new_self_friendship.friend_id = friend_id
+    @new_self_friendship.user_id = current_user.id
+
+    @new_reverse_friendship = Friendship.new
+    @new_reverse_friendship.friend_id = current_user.id
+    @new_reverse_friendship.user_id = friend_id
+
+
+    if @new_self_friendship.save
+      #@new_notification = Notification.create recipient_id: @friend.id, actor_id: current_user.id, action: "added you as a friend", category: 2, notifiable: @new_friendship
+      # TODO ajax show new friends
+      # TEMP TODO refresh page
+    end
+
+    if @new_reverse_friendship.save
+      #@new_notification = Notification.create recipient_id: @friend.id, actor_id: current_user.id, action: "added you as a friend", category: 2, notifiable: @new_friendship
+      # TODO ajax show new friends
+      # TEMP TODO refresh page
+    end
+
+    render json: {status: :true}
 
   end
 
