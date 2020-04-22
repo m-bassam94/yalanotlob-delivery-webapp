@@ -73,18 +73,21 @@ class OrdersController < ApplicationController
     end
   end
 
+  def cancel_order
+    @order_id = params[:id]
+    @order = Order.find(id = @order_id)
+    @order.status = "Canceled"
+    @order.save 
+    redirect_to orders_path
+  end
 
   def finish
-    @order_id = params['finish-btn']
+    @order_id = params[:id]
     @order = Order.find(id = @order_id)
     @order.status = "Finished"
     @order.save 
+    redirect_to orders_path
   end
-
-  def cancel_order
-
-  end
-
 
   private def order_params
     params.require(:newOrder).permit(:orderType, :resturant, :menu)

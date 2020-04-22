@@ -20,6 +20,12 @@ Rails.application.routes.draw do
   post '/orders/invite/:id' => 'orders#invite', as: 'invite'
   delete '/orders/invite/:id' => 'orders#cancel', as: 'cancel'
 
+  # Cancel order
+  post '/orders/:id/cancel' => 'orders#cancel_order', as: 'cancelOrder'
+
+  post '/orders/:id/finish' => 'orders#finish', as: 'finishOrder'
+  
+
   resources :notifications do
     collection do
       post :mark_as_read

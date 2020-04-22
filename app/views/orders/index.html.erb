@@ -25,7 +25,7 @@
     <tbody>
     <% @orders.each do |order| %>
       <tr>
-        <th scope="row"><%= @counter + 1 %></th>
+        <th scope="row"><%= order.id %></th>
         <td>
           <%= order.orderType %>
         </td>
@@ -37,11 +37,12 @@
           <%= link_to "View", details_path(order) , class: "btn btn-primary" %>
         </td>
         <td>
-          <%= link_to "Finish", "##" , class: "btn btn-primary" %>
+          <%= link_to "Finish", finishOrder_path(order) , class: "btn btn-primary", method: "POST" %>
         </td>
         <td>
-         <%= link_to "Cancel", "###" , class: "btn btn-primary" %>
+          <%= link_to "Cancel", cancelOrder_path(order) , class: "btn btn-primary", method: "POST" %>
         </td>
+      </tr>
     <% end %>
     </tbody>
   </table>
