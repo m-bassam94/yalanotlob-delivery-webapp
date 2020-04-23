@@ -42,37 +42,42 @@
                 <i class="far fa-bell fa-2x"></i>
               </span>
             </a>
-            <ul class="dropdown-menu notifications" data-behavior="notification-items">
-<!--              <li class="head text-light bg-dark">-->
-<!--                <div class="row">-->
-<!--                  <div class="col-lg-12 col-sm-12 col-12">-->
-<!--                    <span>Notifications (3)</span>-->
-<!--                    <a href="" class="float-right text-light">Mark all as read</a>-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--              </li>-->
-<!--              <li class="notification-box">-->
-<!--                <div class="row">-->
-<!--                  <div class="col-lg-3 col-sm-3 col-3 text-center">-->
-<!--                    <img src="/demo/man-profile.jpg" class="w-50 rounded-circle">-->
-<!--                  </div>-->
-<!--                  <div class="col-lg-8 col-sm-8 col-8">-->
-<!--                    <strong class="text-info">David John</strong>-->
-<!--                    <div>-->
-<!--                      Lorem ipsum dolor sit amet, consectetur-->
-<!--                    </div>-->
-<!--                    <div>-->
-<!--                      <a href="">-->
-<!--                        <button type="button" class="btn btn-success btn-sm">Accept</button>-->
-<!--                      </a>-->
-<!--                      <a href="">-->
-<!--                        <button type="button" class="btn btn-danger btn-sm">Deny</button>-->
-<!--                      </a>-->
-<!--                    </div>-->
-<!--                    <small class="text-warning">27.11.2015, 15:00</small>-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--              </li>-->
+            <ul class="dropdown-menu notifications">
+              <li class="head text-light bg-dark">
+                <div class="row">
+                  <div class="col-lg-12 col-sm-12 col-12">
+                    <span data-behavior="notifications-count">Notifications (0)</span>
+                    <a href="/notifications/mark_as_read" id="notifications-read" class="float-right text-light">Mark
+                      all as read</a>
+                    <%#= link_to "Mark all as read", '/notifications/mark_as_read', id: "notifications-read",class: "float-right text-light", :remote => true, method: :post %>
+                  </div>
+                </div>
+              </li>
+              <ul data-behavior="notification-items">
+                <!--                              <li class="notification-box">-->
+                <!--                                <div class="row">-->
+                <!--                                  <div class="col-lg-3 col-sm-3 col-3 text-center">-->
+                <!--                                    <img src="/demo/man-profile.jpg" class="w-50 rounded-circle">-->
+                <!--                                  </div>-->
+                <!--                                  <div class="col-lg-8 col-sm-8 col-8">-->
+                <!--                                    <strong class="text-info">David John</strong>-->
+                <!--                                    <div>-->
+                <!--                                      Lorem ipsum dolor sit amet, consectetur-->
+                <!--                                    </div>-->
+                <!--                                    <div>-->
+                <!--                                      <a href="">-->
+                <!--                                        <button type="button" class="btn btn-success btn-sm">Accept</button>-->
+                <!--                                      </a>-->
+                <!--                                      <a href="">-->
+                <!--                                        <button type="button" class="btn btn-danger btn-sm">Deny</button>-->
+                <!--                                      </a>-->
+                <!--                                    </div>-->
+                <!--                                    <small class="text-warning">27.11.2015, 15:00</small>-->
+                <!--                                  </div>-->
+                <!--                                </div>-->
+                <!--                              </li>-->
+
+              </ul>
             </ul>
           </li>
 

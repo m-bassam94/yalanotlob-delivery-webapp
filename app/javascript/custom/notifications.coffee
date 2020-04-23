@@ -8,7 +8,7 @@ class Notifications
     $(document).on "turbolinks:load", =>
       @validateSessionAndSetNotifications()
 
-    $("[data-behavior='notifications-read']").on("click", @handleReadClick)
+    #    $("[data-behavior='notifications-read']").on("click", @handleReadClick)
 
     setInterval  @getNotification, 5000
 
@@ -22,6 +22,7 @@ class Notifications
     )
 
   handleReadClick: (e) =>
+    e.preventDefault()
     $.ajax(
       url: "/notifications/mark_as_read"
       dataType: "JSON"
@@ -43,19 +44,19 @@ class Notifications
       return
     else
       data = JSON.parse(sessionStorage['notifications'])
-      unread_count = '
-        <li class="head text-light bg-dark">
-          <div class="row">
-            <div class="col-lg-12 col-sm-12 col-12">
-              <span>Notifications (' + data.length + ')</span>
-              <a href="" data-behavior="notifications-read" class="float-right text-light">Mark all as read</a>
 
-            </div>
-          </div>
-        </li>
-        '
+      #      unread_count = '
+      #        <li class="head text-light bg-dark">
+      #          <div class="row">
+      #            <div class="col-lg-12 col-sm-12 col-12">
+      #              <span>Notifications (' + data.length + ')</span>
+      #              <a href="" data-behavior="notifications-read" class="float-right text-light">Mark all as read</a>
+      #
+      #            </div>
+      #          </div>
+      #        </li>
+      #        '
       items = $.map data, (notification) =>
-        model = notification.model
         returnStmt = '
         <li class="notifcation-box">
         <div class="row">
@@ -73,7 +74,7 @@ class Notifications
         returnStmt += notification.actor.id
         returnStmt += "/accept"
         returnStmt += '">
-          <button type="button" className="btn btn-success btn-sm">Accept</button>
+          <button type="button" class="btn btn-success btn-sm">Accept</button>
           </a>
           <a href="'
         returnStmt += notification.model
@@ -81,7 +82,7 @@ class Notifications
         returnStmt += notification.actor.id
         returnStmt += "/decline"
         returnStmt += '">
-          <button type="button" className="btn btn-danger btn-sm">Deny</button>
+          <button type="button" class="btn btn-danger btn-sm">Deny</button>
           </a>
           </div>'
         returnStmt += '
@@ -91,8 +92,11 @@ class Notifications
           </li>
           '
         return returnStmt
+      $("[data-behavior='notifications-count']").text("Notifications (" + items.length + ")")
+      #      $("[data-behavior='notifications-read']").on("click", @handleReadClick)
+      $("#notifications-read").on("click", @handleReadClick)
       $("[data-behavior='notifications-link']").attr('data-count': items.length)
-      $("[data-behavior='notification-items']").html(unread_count + items)
+      $("[data-behavior='notification-items']").html(items)
 
 jQuery ->
   new Notifications
