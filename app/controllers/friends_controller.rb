@@ -89,14 +89,16 @@ class FriendsController < ApplicationController
       # TEMP TODO refresh page
     end
 
+    notification = Notification.where(:actor_id => friend_id, :recipient_id => current_user.id, :model => "friends")
+    notification.update_all(read_at: Time.zone.now)
     redirect_to friends_path
 
   end
 
   def decline
     id = params[:id]
-    notification = Notification.where(:actor_id => id) and Notification.where(:recipient_id => current_user.id)
-    notification.destroy
+    notification = Notification.where(:actor_id => id, :recipient_id => current_user.id, :model => "friends")
+    notification.delete_all
     redirect_to friends_path
 
   end
