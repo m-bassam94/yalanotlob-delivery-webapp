@@ -74,7 +74,7 @@ class Notifications
         returnStmt += notification.actor.id
         returnStmt += "/accept"
         returnStmt += '">
-          <button type="button" className="btn btn-success btn-sm">Accept</button>
+          <button type="button" class="btn btn-success btn-sm">Accept</button>
           </a>
           <a href="'
         returnStmt += notification.model
@@ -82,7 +82,7 @@ class Notifications
         returnStmt += notification.actor.id
         returnStmt += "/decline"
         returnStmt += '">
-          <button type="button" className="btn btn-danger btn-sm">Deny</button>
+          <button type="button" class="btn btn-danger btn-sm">Deny</button>
           </a>
           </div>'
         returnStmt += '
